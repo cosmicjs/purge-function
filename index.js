@@ -1,11 +1,23 @@
-module.exports.handler = (event, context, callback) => {
+module.exports.handler = async (event, context, callback) => {
+  const axios = require('axios');
+  const body = JSON.parse(event.body);
+  let type = '';
+  // CONFIG
+  if (body.data.type_slug === 'articles')
+    type = 'blog';
+  // Send a PURGE request
+  const url = process.env.BASE_PATH + '/' + type + '/' + body.data.slug + process.env.AFTER_PATH;
+  const purge_res = await axios({
+    method: 'purge',
+    url: url
+  });
   const response = {
     statusCode: 200,
     headers: {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'text/plain'
     },
-    body: 'Hello world! Custom message: ' + process.env.CUSTOM_MESSAGE + ' Event body: ' + (event ? event.body : null)
+    body: purge_res.data
   };
   callback(null, response);
 }

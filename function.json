@@ -16,7 +16,7 @@
       "cors": true
     },
     {
-      "path": "poster",
+      "path": "purge",
       "method": "post",
       "cors": true
     }
