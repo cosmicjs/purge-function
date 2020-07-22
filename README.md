@@ -1,5 +1,5 @@
 # Purge Function
-Use the Cosmic Purge Function for purching cached content on webpages using Cosmic Webhooks.
+Use the Cosmic Purge Function to purge cached content on webpages using Cosmic Webhooks.
 
 ### Getting Started
 You can run this Function locally for development:
@@ -8,6 +8,38 @@ git clone https://github.com/cosmicjs/purge-function
 cd purge-function
 npm install
 npm run develop
+```
+
+### How it works
+After deploying this function and triggering a POST request using a [Cosmic Webhook](https://docs.cosmicjs.com/webhooks/) the `/purge` route uses the `handler` in `index.js`. The following is what happens:
+1. The base path is set using an environment valriable.
+2. The Object `type_slug` is used to determine the next path to follow (so you can have multiple Object types using this).
+3. A query string is added to the URL if supplied via the environment valriable.
+4. A `purge` request is sent to your website, in this case, for the Cosmic website it is Fastly. See [the Fastly docs](https://developer.fastly.com/reference/api/purging/) on how this is done.
+```javascript
+module.exports.handler = async (event, context, callback) => {
+  const axios = require('axios');
+  const body = JSON.parse(event.body);
+  let type = '';
+  // CONFIG
+  if (body.data.type_slug === 'articles')
+    type = 'blog';
+  // Send a PURGE request
+  const url = process.env.BASE_PATH + '/' + type + '/' + body.data.slug + process.env.QUERY_STRING;
+  const purge_res = await axios({
+    method: 'purge',
+    url: url
+  });
+  const response = {
+    statusCode: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'text/plain'
+    },
+    body: purge_res.data
+  };
+  callback(null, response);
+}
 ```
 
 ### Installation
