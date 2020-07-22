@@ -75,7 +75,7 @@ Example `function.json` file:
   ],
   "routes": [
     {
-      "path": "hello-world",
+      "path": "/",
       "method": "get",
       "cors": true
     },
