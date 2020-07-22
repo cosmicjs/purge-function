@@ -1,8 +1,8 @@
 {
-  "title": "Function Starter",
-  "description": "Cosmic JS Function starter.",
-  "image_url": "https://cosmicjs.com/images/marketing/logo-w-brand.jpg",
-  "repo_url": "https://github.com/cosmicjs/function-starter",
+  "title": "Cache Purge",
+  "description": "A function that purges a website cache. Currently works for Fastly.",
+  "image_url": "https://cdn.cosmicjs.com/3cf62ab0-8e13-11ea-9b8f-cd0254a8c979-cosmic-dark.svg",
+  "repo_url": "https://github.com/cosmicjs/purge-function",
   "env_vars": [
     {
       "key": "BASE_PATH",
