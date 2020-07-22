@@ -5,7 +5,11 @@
   "repo_url": "https://github.com/cosmicjs/function-starter",
   "env_vars": [
     {
-      "key": "CUSTOM_MESSAGE",
+      "key": "BASE_PATH",
+      "value": ""
+    },
+    {
+      "key": "AFTER_PATH",
       "value": ""
     }
   ],
