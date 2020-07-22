@@ -9,13 +9,13 @@
       "value": ""
     },
     {
-      "key": "AFTER_PATH",
+      "key": "QUERY_STRING",
       "value": ""
     }
   ],
   "routes": [
     {
-      "path": "hello-world",
+      "path": "/",
       "method": "get",
       "cors": true
     },
