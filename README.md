@@ -1,5 +1,5 @@
 # Purge Function
-Use the Cosmic Purge Function to purge cached content on webpages using Cosmic Webhooks. Currently works for [Fastly](Fastly) and can be configured to other CDN providers.
+Use the Cosmic Purge Function to purge cached content on webpages using Cosmic Webhooks. Currently works for [Fastly](https://www.fastly.com/) and can be configured to purge cache from other CDN providers.
 
 ### Getting Started
 You can run this Function locally for development:
