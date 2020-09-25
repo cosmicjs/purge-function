@@ -7,6 +7,8 @@ module.exports.handler = async (event, context, callback) => {
     type = 'blog';
   if (body.data.type_slug === 'changelogs')
     type = 'changelog';
+  if (body.data.type_slug === 'case-studies')
+    type = 'case-studies';
   // Send a PURGE request
   const url = process.env.BASE_PATH + '/' + type + '/' + body.data.slug + process.env.QUERY_STRING;
   const purge_res = await axios({
